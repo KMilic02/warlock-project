@@ -1,7 +1,8 @@
 public enum ControlMode
 {
     movement,
-    actionBuffer
+    actionBuffer,
+    casting
 }
 
 public enum State

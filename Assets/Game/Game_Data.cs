@@ -4,6 +4,8 @@ using UnityEngine;
 
 public partial class Game : MonoBehaviour
 {
+    public Texture2D cursor;
+
     List<Player> players = new List<Player>();
 
     public List<Player> getPlayers()

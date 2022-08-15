@@ -11,6 +11,6 @@ public partial class Game : MonoBehaviour
 
     void initializeGame()
     {
-
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 }
