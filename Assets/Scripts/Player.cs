@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     ControlMode controlMode = ControlMode.movement;
     State state = State.normal;
 
-    BaseCharacter character;
+    public BaseCharacter character;
 
     Camera p_Camera;
     Plane playerPlane;
@@ -23,15 +23,26 @@ public class Player : MonoBehaviour
     NavMeshPath pathing;
     int pathingNode = 1;
 
-    void setCharacter(BaseCharacter character)
+    public int getOwnership()
     {
-        this.character = character;
+        return ownership;
+    }
+
+    public Camera getCamera()
+    {
+        return p_Camera;
+    }
+
+    public Plane getPlane()
+    {
+        return playerPlane;
     }
 
     void Start()
     {
         p_Camera = transform.GetComponentInChildren<Camera>();
         pathing = new NavMeshPath();
+        character.setPlayer(this);
         NavMesh.CalculatePath(transform.position, transform.position, 0, pathing);
         setCameraPosition();
     }
@@ -104,14 +115,18 @@ public class Player : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(direction);
                 var euler = transform.rotation.eulerAngles;
-                transform.rotation= Quaternion.Euler(euler.x, euler.y + 90, euler.z);
+                transform.rotation = Quaternion.Euler(euler.x, euler.y + 90, euler.z);
             }
         }
     }
 
     void handleCasting()
     {
-
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            BaseSpell spell = character.getSpellByHotkey('Q');
+            character.castSpell(spell);
+        }
     }
 
     public void setTargetPosition(Vector3 targetPosition)
