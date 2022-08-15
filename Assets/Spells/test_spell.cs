@@ -6,6 +6,7 @@ using UnityEngine;
 public class test_spell : BaseSpell
 {
     public GameObject projectilePrefab;
+    public GameObject explosionPrefab;
 
     public override void castSpell(Player caster, Vector3 target)
     {
